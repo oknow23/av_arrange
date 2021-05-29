@@ -35,7 +35,7 @@ for fileNames in os.listdir(os.getcwd()):
 print("---------------------------------------")
 
 # Allocate folder
-girl_list = ["三上悠亞", "旬果", "橋本", "桃乃木", "桜空","水卜"];
+girl_list = ["三上悠亞", "旬果", "橋本ありな", "桃乃木かな", "桜空もも","水卜さくら"];
 
 print("Allocate to folder start")
 print("---------------------------------------")
