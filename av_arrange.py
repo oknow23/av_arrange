@@ -1,8 +1,9 @@
 import os
 import sys
 import re
+import json
 
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 DBG = 0
 JPG_TYPE = 0
 VIDEO_TYPE = 1
@@ -34,20 +35,22 @@ for fileNames in os.listdir(os.getcwd()):
 
 print("---------------------------------------")
 
-# Allocate folder
-girl_list = ["三上悠亞", "旬果", "橋本ありな", "桃乃木かな", "桜空もも","水卜さくら"];
+
+f = open('av_list.txt',"r",encoding="utf-8")
+data = json.load(f)
+
 
 print("Allocate to folder start")
 print("---------------------------------------")
 for fileNames in os.listdir(os.getcwd()):
 	if os.path.isdir(fileNames) and re.search(r'[a-zA-Z-0-9]*',fileNames).group():
-		for girl in girl_list:
-			if re.search(girl,fileNames):
+		for girl in data['girl_list']:
+			if re.search(girl['match'],fileNames):
 				print(fileNames)
-				if not os.path.isdir(girl):
-					os.makedirs(girl)
-				print('Move to:'+girl+'\\'+fileNames)
-				os.rename(fileNames,girl+'\\'+fileNames)
+				if not os.path.isdir(girl['name']):
+					os.makedirs(girl['name'])
+				print('Move to:'+girl['name']+'\\'+fileNames)
+				os.rename(fileNames,girl['name']+'\\'+fileNames)
 print("---------------------------------------")
 
 print('Done!!')
